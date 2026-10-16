@@ -157,8 +157,11 @@ Vertex calls were deferred during the offline build. Following separate user app
 the minimal live test also passed on October 16, 2026: real Gemini planning, four Vertex
 document embeddings, local Chroma indexing, a cited 30-day return answer, and abstention
 for an unsupported private-phone-number question. Both answers remained pending review.
-External Chroma, Docker building and Cloud Run remain unverified. No deployment or cloud
-resource creation occurred.
+Following separate deployment approval, a Linux container was built through Cloud Build
+and an authenticated ephemeral Cloud Run demo was deployed. HTTP access control, health,
+and remote Streamlit WebSocket rendering passed. Hosted AI calls remain disabled and
+external Chroma remains unverified. See [DEPLOYMENT.md](DEPLOYMENT.md) for access,
+configuration, resource details and cleanup.
 
 The full 118-section manual demo subsequently reproduced a Vertex HTTP 429
 (`RESOURCE_EXHAUSTED`). After adding per-section checkpointing, safe error reporting,
@@ -229,8 +232,9 @@ For local live container use, mount ADC read-only and pass `GOOGLE_APPLICATION_C
 for Cloud Run use its service identity with the required Vertex permissions. Mount a local
 data directory if you want local container approvals to survive container deletion.
 
-No cloud deployment or new resources have been performed. The following is a future,
-ephemeral demo deployment recipe, requiring separate approval, an existing Artifact Registry
+An authenticated ephemeral demo is deployed; see [DEPLOYMENT.md](DEPLOYMENT.md) for the
+current URL and exact commands. The following is an alternative external-Chroma
+deployment recipe, requiring an existing Artifact Registry
 repository, service account and externally reachable Chroma endpoint:
 
 ```powershell
