@@ -1,0 +1,4 @@
+office_id,office_name,city,address,opening_hours,step_free_access,onsite_days,contact_email
+LON,London Studio,London,10 Example Lane London,Monday to Friday 08:00-18:00,true,Tuesday and Thursday,london@northstar.example
+MAN,Manchester Studio,Manchester,25 Sample Street Manchester,Monday to Friday 08:30-17:30,true,Wednesday,manchester@northstar.example
+REMOTE,Remote Workspace,Remote,Not applicable,Flexible hours agreed with manager,false,No mandatory office day,people@northstar.example

@@ -1,0 +1,54 @@
+[
+  {
+    "equipment_id": "EQ-LAP-01",
+    "name": "Standard work laptop",
+    "category": "computer",
+    "eligible_employees": "All employees",
+    "available": true,
+    "approval": "Line manager approval required",
+    "ordering_channel": "IT Service Desk portal",
+    "request_deadline": "At least 5 working days before the start date",
+    "delivery": {"office_ids": ["LON", "MAN", "REMOTE"], "remote_delivery": true},
+    "specifications": {"memory_gb": 16, "storage_gb": 512},
+    "notes": "A laptop is assigned to the employee and must be returned when employment ends."
+  },
+  {
+    "equipment_id": "EQ-MON-01",
+    "name": "External monitor",
+    "category": "display",
+    "eligible_employees": "Employees with an approved home-working arrangement",
+    "available": true,
+    "approval": "Line manager approval required",
+    "ordering_channel": "IT Service Desk portal",
+    "request_deadline": null,
+    "delivery": {"office_ids": ["LON", "MAN", "REMOTE"], "remote_delivery": true},
+    "specifications": {"screen_inches": 24, "adjustable_height": true},
+    "notes": "One monitor per eligible employee."
+  },
+  {
+    "equipment_id": "EQ-HEAD-01",
+    "name": "USB headset",
+    "category": "audio",
+    "eligible_employees": "All employees",
+    "available": true,
+    "approval": "No separate manager approval required",
+    "ordering_channel": "IT Service Desk portal",
+    "request_deadline": null,
+    "delivery": {"office_ids": ["LON", "MAN", "REMOTE"], "remote_delivery": true},
+    "specifications": {"connection": "USB", "microphone": true},
+    "notes": "Request using equipment_id EQ-HEAD-01."
+  },
+  {
+    "equipment_id": "EQ-CHAIR-01",
+    "name": "Ergonomic chair",
+    "category": "furniture",
+    "eligible_employees": "Employees referred by the workplace assessment team",
+    "available": false,
+    "approval": "Workplace assessment and People team approval required",
+    "ordering_channel": "People Portal workplace assessment request",
+    "request_deadline": null,
+    "delivery": {"office_ids": ["LON", "MAN", "REMOTE"], "remote_delivery": true},
+    "specifications": {"adjustable_height": true},
+    "notes": "Currently unavailable. No restock date has been published."
+  }
+]

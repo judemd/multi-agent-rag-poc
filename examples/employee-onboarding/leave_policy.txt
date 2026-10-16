@@ -1,0 +1,19 @@
+Northstar Studio - Fictional Employee Onboarding Demo
+Policy ID: HR-LEAVE-01
+Effective date: 2026-10-01
+This is synthetic demonstration data, not real employment guidance.
+
+Annual leave allowance
+Full-time employees receive 25 days of annual leave per calendar year, plus public holidays observed by their assigned office. Part-time allowances are prorated by HR; the calculation is outside this demo. The leave year runs from 1 January to 31 December.
+
+Requesting annual leave
+Submit a request in the People Portal at least 10 working days before the first day of leave. Your line manager approves or declines the request in the portal. Do not make non-refundable travel bookings until approval is recorded. For an urgent request, contact your manager directly and also record it in the People Portal.
+
+Carryover
+Employees may carry over up to 5 unused annual leave days with manager approval. Carried-over days must be used by 31 March of the following year. Contact people@northstar.example for exceptions; exceptions are not automatic.
+
+Sickness reporting
+Tell your line manager before your normal start time on the first day of sickness and record the absence in the People Portal. If you cannot access the portal, email people@northstar.example. This document does not specify sick pay amounts.
+
+New starters
+Your assigned office is recorded in the office directory using an office_id, such as LON or MAN. See the benefits handbook for first-week tasks and the equipment catalogue for ordering rules.

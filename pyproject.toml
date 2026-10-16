@@ -1,0 +1,15 @@
+[project]
+name = "support-rag-poc"
+version = "0.1.0"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "google-adk==2.12.0", "google-genai==2.31.0", "streamlit==1.66.0",
+  "chromadb==1.5.9", "pydantic==2.14.1", "pypdf==6.21.0",
+  "reportlab==5.0.1", "python-dotenv==1.2.4", "aiosqlite==0.22.1",
+]
+[project.optional-dependencies]
+test = ["pytest==9.1.1"]
+[tool.pytest.ini_options]
+addopts = "--basetemp=data/pytest-tmp"
+pythonpath = ["src", "."]
+testpaths = ["tests"]
