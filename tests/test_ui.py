@@ -13,6 +13,26 @@ def test_page_generates_and_recovers_dataset(tmp_path, monkeypatch):
     assert len(app.selectbox) == 1
     assert app.chat_input[0].disabled
     assert next(b for b in app.button if b.label == "Create preparation plan").disabled
+    saved_dataset = app.selectbox[0].value
+    next(b for b in app.button if b.label == "Start over").click().run()
+    assert not app.exception
+    assert app.selectbox[0].value == saved_dataset
+    next(b for b in app.button if b.label == "Cancel").click().run()
+    assert not app.exception
+    assert app.selectbox[0].value == saved_dataset
+    assert not any(b.label == "Confirm start over" for b in app.button)
+    next(b for b in app.button if b.label == "Start over").click().run()
+    next(b for b in app.button if b.label == "Confirm start over").click().run()
+    assert not app.exception
+    assert app.selectbox[0].value is None
+    assert any(heading.value == "Start here" for heading in app.subheader)
+    assert not app.tabs
+    app.run()
+    assert app.selectbox[0].value is None
+    app.selectbox[0].select(saved_dataset).run()
+    assert not app.exception
+    assert app.selectbox[0].value == saved_dataset
+    assert next(b for b in app.button if b.label == "Create preparation plan").disabled
     restarted = AppTest.from_file(script, default_timeout=30).run()
     assert not restarted.exception
     assert len(restarted.selectbox) == 1

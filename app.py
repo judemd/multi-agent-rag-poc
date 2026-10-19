@@ -37,6 +37,17 @@ def create_dataset(files, name):
     selected = workflow().create(files, name)
     st.session_state["next_dataset"] = selected
 
+def start_over():
+    for key in list(st.session_state):
+        del st.session_state[key]
+    st.session_state["show_landing"] = True
+
+def request_start_over():
+    st.session_state["confirm_start_over"] = True
+
+def cancel_start_over():
+    st.session_state.pop("confirm_start_over", None)
+
 def evidence_panel(body, key):
     cited = set(body.get("citations", []))
     with st.expander("Check the source evidence", expanded=False):
@@ -47,19 +58,32 @@ def evidence_panel(body, key):
             st.text(e["text"])
             st.caption(f"Cosine distance: {e['distance']:.3f} · Chunk: {meta['chunk_id'][:12]} · Dataset: {meta['dataset_id'][:8]}")
 
-st.title("Beacon Support")
+heading, navigation = st.columns([5, 1])
+with heading:
+    st.title("Beacon Support")
+with navigation:
+    st.button("Start over", on_click=request_start_over, width="stretch")
+if st.session_state.get("confirm_start_over"):
+    with st.container(border=True):
+        st.write("Return to the landing page? Current inputs will be cleared. Saved datasets and progress will remain available.")
+        confirm, cancel = st.columns(2)
+        confirm.button("Confirm start over", type="primary", on_click=start_over, width="stretch")
+        cancel.button("Cancel", on_click=cancel_start_over, width="stretch")
 st.write("Turn support files into answers you can check and approve.")
 
 datasets = store.list()
 if "next_dataset" in st.session_state:
     st.session_state["selected_dataset"] = st.session_state.pop("next_dataset")
+    st.session_state["show_landing"] = False
+selected = None
 with st.sidebar:
     st.header("Your datasets")
     if datasets:
         ids = [d["id"] for d in datasets]
-        if st.session_state.get("selected_dataset") not in ids:
+        if st.session_state.get("selected_dataset") not in ids and not st.session_state.get("show_landing"):
             st.session_state["selected_dataset"] = ids[0]
         selected = st.selectbox("Working dataset", ids, key="selected_dataset",
+            index=None, placeholder="Choose a saved dataset",
             format_func=lambda value: next(d["name"] for d in datasets if d["id"] == value))
     st.divider()
     st.subheader("Start a new dataset")
@@ -81,7 +105,7 @@ with st.sidebar:
     st.divider()
     st.caption("Live AI: enabled" if config.enabled else "Live AI: paused · no paid calls")
 
-if not datasets:
+if selected is None:
     st.subheader("Start here")
     st.info("Choose **Generate demo dataset** in the left sidebar. It creates linked tickets, products, policies and manuals on your laptop.")
     st.markdown("1. **Add files** — inspect what you uploaded.\n2. **Review the plan** — approve how files will be prepared.\n3. **Review text samples** — approve what the AI will search.\n4. **Build the search index** — create searchable embeddings.\n5. **Ask and review** — check sources before publishing an answer.")
